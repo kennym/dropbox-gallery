@@ -1,0 +1,3 @@
+Django
+django-dropbox
+django-social-auth

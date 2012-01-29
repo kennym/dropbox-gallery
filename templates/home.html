@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+
+{% block heading %}Login using Dropbox{% endblock %}
+
+{% block content %}
+<div>
+  <ul>
+  {% for name in social_auth.backends.oauth %}
+    <li><a rel="nofollow" href="{% url socialauth_begin name %}">{{ name|title }}</a></li>
+  {% endfor %}
+  </ul>
+</div>
+{% endblock %}
