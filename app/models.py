@@ -1,6 +1,11 @@
 # Define a custom User class to work with django-social-auth
 from django.db import models
+from django_dropbox.storage import DropboxStorage
 
+STORAGE = DropboxStorage()
+
+class Image(models.Model):
+    photo = models.ImageField(upload_to='photos', storage=STORAGE)
 
 class CustomUserManager(models.Manager):
     def create_user(self, username, email):
@@ -18,10 +23,3 @@ class CustomUser(models.Model):
 
 
 from social_auth.signals import pre_update
-from social_auth.backends.facebook import FacebookBackend
-
-def facebook_extra_values(sender, user, response, details, **kwargs):
-    return False
-
-pre_update.connect(facebook_extra_values, sender=FacebookBackend)
-# Create your models here.
